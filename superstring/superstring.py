@@ -5,12 +5,12 @@ class SuperStringBase(object):
         pass
 
     def lower(self):
-        if self.length < SUPERSTRING_MINIMAL_LENGTH:
+        if self.length() < SUPERSTRING_MINIMAL_LENGTH:
             return SuperString(self.toPrintable().lower())
         return SuperStringLower(self)
 
     def upper(self):
-        if self.length < SUPERSTRING_MINIMAL_LENGTH:
+        if self.length() < SUPERSTRING_MINIMAL_LENGTH:
             return SuperString(self.toPrintable().upper())
         return SuperStringUpper(self)
 
