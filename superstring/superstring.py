@@ -151,7 +151,7 @@ class SuperStringLower(SuperStringBase):
         self._base = base
 
     def length(self):
-        return self.length()
+        return self._base.length()
 
     def characterAt(self, index):
         return self._base.characterAt(index).lower()
@@ -164,7 +164,7 @@ class SuperStringUpper(SuperStringBase):
         self._base = base
 
     def length(self):
-        return self.length()
+        return self._base.length()
 
     def characterAt(self, index):
         return self._base.characterAt(index).upper()
