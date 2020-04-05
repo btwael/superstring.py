@@ -1,23 +1,24 @@
 SUPERSTRING_MINIMAL_LENGTH = 48
 
+
 class SuperStringBase(object):
     def length(self):
         pass
 
     def lower(self):
         if self.length() < SUPERSTRING_MINIMAL_LENGTH:
-            return SuperString(self.toPrintable().lower())
+            return SuperString(self.to_printable().lower())
         return SuperStringLower(self)
 
     def upper(self):
         if self.length() < SUPERSTRING_MINIMAL_LENGTH:
-            return SuperString(self.toPrintable().upper())
+            return SuperString(self.to_printable().upper())
         return SuperStringUpper(self)
 
-    def characterAt(self, index):
+    def character_at(self, index):
         pass
 
-    def split(self, separator = " "):
+    def split(self, separator=" "):
         result = []
         previous = 0
         i = 0
@@ -25,7 +26,7 @@ class SuperStringBase(object):
             gonext = False
             j = 0
             while j < len(separator):
-                if self.characterAt(i + j) != separator[j]:
+                if self.character_at(i + j) != separator[j]:
                     gonext = True
                     break
                 j = j + 1
@@ -36,29 +37,27 @@ class SuperStringBase(object):
         result.append(self.substring(previous))
         return result
 
-    def substring(self, startIndex, endIndex = None):
-        # TODO: if the substring is to short: copy
-        if startIndex == None:
-            startIndex = 0
-        if endIndex == None:
-            endIndex = self.length()
-        if startIndex == 0 and endIndex == self.length():
+    def substring(self, start_index, end_index=None):
+        # TODO: if the substring is to short: copys
+        start_index = start_index if start_index else 0
+        end_index = end_index if end_index else self.length()
+        if start_index == 0 and end_index == self.length():
             return self
-        if endIndex - startIndex < SUPERSTRING_MINIMAL_LENGTH:
-            return SuperString(self.toPrintable(startIndex, endIndex = endIndex))
-        return SuperStringSubstring(self, startIndex, endIndex)
+        if end_index - start_index < SUPERSTRING_MINIMAL_LENGTH:
+            return SuperString(self.to_printable(start_index, end_index=end_index))
+        return SuperStringSubstring(self, start_index, end_index)
 
     def strip(self):
         i = 0
-        while self.characterAt(i) == ' ':
+        while self.character_at(i) == ' ':
             i = i + 1
-        startIndex = i
+        start_index = i
         i = self.length() - 1
-        while self.characterAt(i) == ' ':
+        while self.character_at(i) == ' ':
             i = i - 1
-        return self.substring(startIndex, i + 1)
+        return self.substring(start_index, i + 1)
 
-    def toPrintable(self, startIndex = None, endIndex = None):
+    def to_printable(self, start_index=None, end_index=None):
         pass
 
     def __len__(self):
@@ -70,34 +69,32 @@ class SuperStringBase(object):
         return SuperStringConcatenation(self, right)
 
     def __str__(self):
-        return self.toPrintable()
+        return self.to_printable()
 
     def __getitem__(self, key):
         # TODO: Negative Indexing
         if isinstance(key, slice):
-            return self.substring(key.start, endIndex = key.stop)
-        return self.characterAt(key)
+            return self.substring(key.start, end_index=key.stop)
+        return self.character_at(key)
+
 
 class SuperString(SuperStringBase):
     def __init__(self, content):
         self._content = content
+        self._length = len(self._content)
 
+    @property
     def length(self):
-        if not hasattr(self,'_length'):
-            self._length = len(self._content)
         return self._length
 
-    def characterAt(self, index):
+    def character_at(self, index):
         return self._content[index]
 
-    def toPrintable(self, startIndex = None, endIndex = None):
-        if startIndex != None:
-            if endIndex == None:
-                endIndex = self.length()
-            return self._content[startIndex:endIndex]
-        elif endIndex != None:
-            return self._content[0:endIndex]
-        return self._content
+    def to_printable(self, start_index=None, end_index=None):
+        start_index = start_index if start_index else 0
+        end_index = end_index if end_index else self.length()
+        return self._content[start_index:end_index]
+
 
 class SuperStringConcatenation(SuperStringBase):
     def __init__(self, left, right):
@@ -107,44 +104,42 @@ class SuperStringConcatenation(SuperStringBase):
     def length(self):
         return self._left.length() + self._right.length()
 
-    def characterAt(self, index):
-        leftLen = self._left.length()
-        if index < leftLen:
+    def character_at(self, index):
+        left_len = self._left.length()
+        if index < left_len:
             return self._left[index]
-        return self._right[index - leftLen]
+        return self._right[index - left_len]
 
-    def toPrintable(self, startIndex = None, endIndex = None):
-        if startIndex == None:
-            startIndex = 0
-        if endIndex == None:
-            endIndex = self.length()
-        leftLen = self._left.length()
-        if endIndex < leftLen:
-            return self._left.toPrintable(startIndex = startIndex, endIndex = endIndex)
-        elif startIndex > leftLen:
-            return self._right.toPrintable(startIndex = startIndex - leftLen, endIndex = endIndex - leftLen)
-        return self._left.toPrintable(startIndex = startIndex) + self._right.toPrintable(endIndex = endIndex - leftLen)
+    def to_printable(self, start_index=None, end_index=None):
+        start_index = start_index if start_index else 0
+        end_index = end_index if end_index else self.length()
+        left_len = self._left.length()
+        if end_index < left_len:
+            return self._left.to_printable(start_index=start_index, end_index=end_index)
+        elif start_index > left_len:
+            return self._right.to_printable(start_index=start_index - left_len, end_index=end_index - left_len)
+        return self._left.to_printable(start_index=start_index) + self._right.to_printable(end_index=end_index - left_len)
+
 
 class SuperStringSubstring(SuperStringBase):
-    def __init__(self, base, startIndex, endIndex):
+    def __init__(self, base, start_index, end_index):
         self._base = base
-        self._startIndex = startIndex
-        self._endIndex = endIndex
+        self._start_index = start_index
+        self._end_index = end_index
 
     def length(self):
-        return self._endIndex - self._startIndex
+        return self._end_index - self._start_index
 
-    def characterAt(self, index):
-        return self._base.characterAt(self._startIndex + index)
+    def character_at(self, index):
+        return self._base.character_at(self._start_index + index)
 
-    def toPrintable(self, startIndex = None, endIndex = None):
-        if startIndex == None:
-            startIndex = 0
-        if endIndex == None:
-            endIndex = self.length()
-        startIndex += self._startIndex
-        endIndex += self._startIndex
-        return self._base.toPrintable(startIndex, endIndex = endIndex)
+    def to_printable(self, start_index=None, end_index=None):
+        start_index = start_index if start_index else 0
+        end_index = end_index if end_index else self.length()
+        start_index += self._start_index
+        end_index += self._start_index
+        return self._base.to_printable(start_index, end_index=end_index)
+
 
 class SuperStringLower(SuperStringBase):
     def __init__(self, base):
@@ -153,11 +148,12 @@ class SuperStringLower(SuperStringBase):
     def length(self):
         return self._base.length()
 
-    def characterAt(self, index):
-        return self._base.characterAt(index).lower()
+    def character_at(self, index):
+        return self._base.character_at(index).lower()
 
-    def toPrintable(self, startIndex = None, endIndex = None):
-        return self._base.toPrintable(startIndex, endIndex).lower()
+    def to_printable(self, start_index=None, end_index=None):
+        return self._base.to_printable(start_index, end_index).lower()
+
 
 class SuperStringUpper(SuperStringBase):
     def __init__(self, base):
@@ -166,8 +162,8 @@ class SuperStringUpper(SuperStringBase):
     def length(self):
         return self._base.length()
 
-    def characterAt(self, index):
-        return self._base.characterAt(index).upper()
+    def character_at(self, index):
+        return self._base.character_at(index).upper()
 
-    def toPrintable(self, startIndex = None, endIndex = None):
-        return self._base.toPrintable(startIndex, endIndex).upper()
+    def to_printable(self, start_index=None, end_index=None):
+        return self._base.to_printable(start_index, end_index).upper()
