@@ -1,0 +1,2 @@
+from superstring import SuperString
+
