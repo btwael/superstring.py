@@ -42,7 +42,7 @@ string.length()
 
 # character
 string[10] # "S"
-string.characterAt(10) # "S"
+string.character_at(10) # "S"
 
 # substring
 string[10:21] # "SuperString"

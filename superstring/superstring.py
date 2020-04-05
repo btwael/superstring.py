@@ -83,8 +83,9 @@ class SuperString(SuperStringBase):
         self._content = content
         self._length = len(self._content)
 
-    @property
     def length(self):
+        if not hasattr(self,'_length'):
+            self._length = len(self._content)
         return self._length
 
     def character_at(self, index):
