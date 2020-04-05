@@ -84,7 +84,7 @@ class SuperString(SuperStringBase):
         self._length = len(self._content)
 
     def length(self):
-        if not hasattr(self,'_length'):
+        if not hasattr(self, '_length'):
             self._length = len(self._content)
         return self._length
 
@@ -119,7 +119,8 @@ class SuperStringConcatenation(SuperStringBase):
             return self._left.to_printable(start_index=start_index, end_index=end_index)
         elif start_index > left_len:
             return self._right.to_printable(start_index=start_index - left_len, end_index=end_index - left_len)
-        return self._left.to_printable(start_index=start_index) + self._right.to_printable(end_index=end_index - left_len)
+        return self._left.to_printable(start_index=start_index) + self._right.to_printable(
+            end_index=end_index - left_len)
 
 
 class SuperStringSubstring(SuperStringBase):
