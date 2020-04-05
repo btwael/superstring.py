@@ -73,10 +73,11 @@ class SuperStringBase(object):
         return self.toPrintable()
 
     def __getitem__(self, key):
-        # TODO: Negative Indexing
         if isinstance(key, slice):
-            return self.substring(key.start, endIndex = key.stop)
-        return self.characterAt(key)
+            start = key.start if key.start > 0 else self.length() + key.start
+            stop = key.stop if key.stop > 0 else self.length() + key.stop
+            return self.substring(start, end_index=stop)
+        return self.character_at(key)
 
 class SuperString(SuperStringBase):
     def __init__(self, content):
