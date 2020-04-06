@@ -81,7 +81,6 @@ class SuperStringBase(object):
 class SuperString(SuperStringBase):
     def __init__(self, content):
         self._content = content
-        self._length = len(self._content)
 
     def length(self):
         if not hasattr(self, '_length'):
