@@ -18,24 +18,21 @@ class SuperStringBase(object):
     def character_at(self, index):
         pass
 
-    def split(self, separator=" "):
+    def split(self, separator = " "):
         result = []
         previous = 0
         i = 0
         while i < self.length():
-            gonext = False
-            j = 0
-            while j < len(separator):
+            for j in range(len(separator)):
                 if self.character_at(i + j) != separator[j]:
-                    gonext = True
                     break
-                j = j + 1
-            if not gonext:
+            else:
                 result.append(self.substring(previous, i))
                 previous = i + len(separator)
             i = i + 1
         result.append(self.substring(previous))
         return result
+
 
     def substring(self, start_index, end_index=None):
         # TODO: if the substring is to short: copys
