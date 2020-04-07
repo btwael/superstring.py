@@ -61,7 +61,7 @@ string.upper() # "  THIS IS SUPERSTRING!  "
 
 ## Roadmap
 - [ ] Optimize even more (I think it's possible :sunglasses:)
-- [ ] Support for negative indexing
+- [x] Support for negative indexing
 - [ ] More benchmark and memory profiling
 
 ## Contribute and support
