@@ -133,7 +133,7 @@ class SuperStringSubstring(SuperStringBase):
 
     def to_printable(self, start_index=None, end_index=None):
         start_index = start_index if start_index else 0
-        end_index = end_index if end_index else self.length()
+        end_index = end_index if end_index is not None else self.length()
         start_index += self._start_index
         end_index += self._start_index
         return self._base.to_printable(start_index, end_index=end_index)
