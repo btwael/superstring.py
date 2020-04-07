@@ -132,7 +132,7 @@ class SuperStringSubstring(SuperStringBase):
         return self._base.character_at(self._start_index + index)
 
     def to_printable(self, start_index=None, end_index=None):
-        start_index = start_index if start_index else 0
+        start_index = start_index if start_index is not None else 0
         end_index = end_index if end_index is not None else self.length()
         start_index += self._start_index
         end_index += self._start_index
