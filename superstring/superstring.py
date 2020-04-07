@@ -35,8 +35,8 @@ class SuperStringBase(object):
 
     def substring(self, start_index, end_index=None):
         # TODO: if the substring is to short: copys
-        start_index = start_index if start_index else 0
-        end_index = end_index if end_index else self.length()
+        start_index = start_index if start_index is not None else 0
+        end_index = end_index if end_index is not None else self.length()
         if start_index == 0 and end_index == self.length():
             return self
         if end_index - start_index < SUPERSTRING_MINIMAL_LENGTH:
@@ -88,8 +88,8 @@ class SuperString(SuperStringBase):
         return self._content[index]
 
     def to_printable(self, start_index=None, end_index=None):
-        start_index = start_index if start_index else 0
-        end_index = end_index if end_index else self.length()
+        start_index = start_index if start_index is not None else 0
+        end_index = end_index if end_index is not None else self.length()
         return self._content[start_index:end_index]
 
 
@@ -108,8 +108,8 @@ class SuperStringConcatenation(SuperStringBase):
         return self._right[index - left_len]
 
     def to_printable(self, start_index=None, end_index=None):
-        start_index = start_index if start_index else 0
-        end_index = end_index if end_index else self.length()
+        start_index = start_index if start_index is not None else 0
+        end_index = end_index if end_index is not None else self.length()
         left_len = self._left.length()
         if end_index < left_len:
             return self._left.to_printable(start_index=start_index, end_index=end_index)
