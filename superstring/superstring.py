@@ -18,7 +18,7 @@ class SuperStringBase(object):
     def character_at(self, index):
         pass
 
-    def split(self, separator = " "):
+    def split(self, separator=" "):
         result = []
         previous = 0
         i = 0
