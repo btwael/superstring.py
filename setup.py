@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
   name = 'superstring',
   packages = ['superstring'],
-  version = '0.3',
+  version = '0.4',
   license='MIT',
   description = 'A fast and memory-optimized string library for heavy-text manipulation',
   author = 'Wael Boutglay',
   author_email = 'btwael@gmail.com',
   url = 'https://github.com/btwael/superstring.py',
-  download_url = 'https://github.com/btwael/superstring.py/archive/superstring.py_0.3.tar.gz',
+  download_url = 'https://github.com/btwael/superstring.py/archive/superstring.py_0.4.tar.gz',
   keywords = ['string', 'rope', 'memory-optimized'],
   install_requires=[],
   classifiers=[
