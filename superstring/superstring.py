@@ -21,15 +21,13 @@ class SuperStringBase(object):
     def split(self, separator=" "):
         result = []
         previous = 0
-        i = 0
-        while i < self.length():
+        for i in range(self.length()):
             for j in range(len(separator)):
                 if self.character_at(i + j) != separator[j]:
                     break
             else:
                 result.append(self.substring(previous, i))
                 previous = i + len(separator)
-            i = i + 1
         result.append(self.substring(previous))
         return result
 
