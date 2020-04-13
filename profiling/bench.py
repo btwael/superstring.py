@@ -1,4 +1,6 @@
-from superstring import SuperString
+from memory_profiler import profile
+
+from superstring.superstring import SuperString
 
 text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet, lectus in faucibus interdum, quam eros bibendum dolor, ut rutrum tellus neque vel urna. Nullam hendrerit non justo ut consequat. Etiam ut urna mattis nisi mollis rutrum. Maecenas interdum massa eros, sit amet tempus neque sodales quis. Phasellus in bibendum nisl. Etiam et arcu enim. Sed imperdiet, urna sed luctus dictum, ex augue fermentum lectus, et aliquet odio urna eu diam. Phasellus ultricies, orci quis volutpat tempus, massa justo bibendum mi, auctor commodo massa sapien et dolor. Proin nulla nunc, hendrerit vel maximus et, sagittis a magna. Suspendisse potenti. Nam vel metus nunc. Aenean aliquet faucibus ex sed hendrerit. Praesent magna neque, bibendum vel purus eget, ornare consequat lorem.
 
@@ -300,23 +302,31 @@ Suspendisse varius diam aliquet augue porta pellentesque. Duis elit nisl, pharet
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna leo, lacinia non convallis vitae, finibus a arcu. Nam sit amet orci dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce vitae dolor id ex imperdiet tempor. Maecenas non facilisis arcu, vehicula ullamcorper nisi. Maecenas sollicitudin a dui ac pellentesque. Proin urna risus, vestibulum eget elit quis, elementum volutpat justo. Cras non velit consectetur, pretium libero sit amet, interdum tellus. Suspendisse potenti. Fusce volutpat lacus nec dolor tempor finibus. Quisque viverra pulvinar congue. Pellentesque ex enim, feugiat vitae libero ut, venenatis ornare dolor."""
 
-def test_superstring():
-  splits = []
-  string = SuperString(text)
-  for i in range(1, len(string)):
-    for j in range(0, len(string), i):
-      splits.append(string[j:j + i])
-  print(len(splits))
-  return splits
+super_string_fp = open('super_string_memory.log', 'w+')
+string_fp = open('string_memory.log', 'w+')
 
+
+@profile(stream=super_string_fp)
+def test_superstring():
+    splits = []
+    string = SuperString(text)
+    for i in range(1, len(string)):
+        for j in range(0, len(string), i):
+            splits.append(string[j:j + i])
+    print(len(splits))
+    return splits
+
+
+@profile(stream=string_fp)
 def test_string():
-  splits = []
-  string = text
-  for i in range(1, len(string)):
-    for j in range(0, len(string), i):
-      splits.append(string[j:j + i])
-  print(len(splits))
-  return splits
+    splits = []
+    string = text
+    for i in range(1, len(string)):
+        for j in range(0, len(string), i):
+            splits.append(string[j:j + i])
+    print(len(splits))
+    return splits
+
 
 var = test_superstring()
-input('Enter your input:')
+var2 = test_string()
