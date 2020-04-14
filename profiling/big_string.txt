@@ -1,6 +1,4 @@
-from superstring import SuperString
-
-text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet, lectus in faucibus interdum, quam eros bibendum dolor, ut rutrum tellus neque vel urna. Nullam hendrerit non justo ut consequat. Etiam ut urna mattis nisi mollis rutrum. Maecenas interdum massa eros, sit amet tempus neque sodales quis. Phasellus in bibendum nisl. Etiam et arcu enim. Sed imperdiet, urna sed luctus dictum, ex augue fermentum lectus, et aliquet odio urna eu diam. Phasellus ultricies, orci quis volutpat tempus, massa justo bibendum mi, auctor commodo massa sapien et dolor. Proin nulla nunc, hendrerit vel maximus et, sagittis a magna. Suspendisse potenti. Nam vel metus nunc. Aenean aliquet faucibus ex sed hendrerit. Praesent magna neque, bibendum vel purus eget, ornare consequat lorem.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet, lectus in faucibus interdum, quam eros bibendum dolor, ut rutrum tellus neque vel urna. Nullam hendrerit non justo ut consequat. Etiam ut urna mattis nisi mollis rutrum. Maecenas interdum massa eros, sit amet tempus neque sodales quis. Phasellus in bibendum nisl. Etiam et arcu enim. Sed imperdiet, urna sed luctus dictum, ex augue fermentum lectus, et aliquet odio urna eu diam. Phasellus ultricies, orci quis volutpat tempus, massa justo bibendum mi, auctor commodo massa sapien et dolor. Proin nulla nunc, hendrerit vel maximus et, sagittis a magna. Suspendisse potenti. Nam vel metus nunc. Aenean aliquet faucibus ex sed hendrerit. Praesent magna neque, bibendum vel purus eget, ornare consequat lorem.
 
 Etiam viverra bibendum congue. Morbi scelerisque quam varius, varius enim non, mattis odio. Aliquam erat volutpat. Phasellus ac lectus ac velit tempor aliquet ut nec libero. Vivamus consequat dui auctor, porttitor eros eu, aliquet ligula. Duis accumsan sodales enim, fringilla viverra dui interdum id. Phasellus finibus lacus id nisl tincidunt faucibus eu sit amet quam. Mauris faucibus mi et est aliquet, volutpat gravida nunc sollicitudin. Vestibulum eleifend posuere orci, quis accumsan odio mattis non. Aliquam rhoncus luctus odio, ac tempor enim scelerisque eget. Curabitur placerat aliquam lobortis. Curabitur in elementum justo, quis pharetra felis. Nunc dapibus, lacus vitae egestas fringilla, ipsum augue auctor massa, molestie aliquam dui neque vel erat.
 
@@ -298,25 +296,4 @@ Integer suscipit enim sem. Donec dictum nisl eu est dignissim rhoncus. Aenean he
 
 Suspendisse varius diam aliquet augue porta pellentesque. Duis elit nisl, pharetra vel porttitor ut, venenatis quis odio. Vivamus auctor purus ac sem accumsan, at consectetur orci efficitur. Phasellus euismod mauris hendrerit, sollicitudin ante aliquam, imperdiet metus. Suspendisse id ipsum lacus. Aenean non est non diam consectetur ullamcorper. Praesent hendrerit leo elementum neque venenatis, quis condimentum mi pellentesque. In gravida est at commodo feugiat. Duis non est volutpat, tincidunt nisl sit amet, ullamcorper nisl. Ut ut lectus nisl.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna leo, lacinia non convallis vitae, finibus a arcu. Nam sit amet orci dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce vitae dolor id ex imperdiet tempor. Maecenas non facilisis arcu, vehicula ullamcorper nisi. Maecenas sollicitudin a dui ac pellentesque. Proin urna risus, vestibulum eget elit quis, elementum volutpat justo. Cras non velit consectetur, pretium libero sit amet, interdum tellus. Suspendisse potenti. Fusce volutpat lacus nec dolor tempor finibus. Quisque viverra pulvinar congue. Pellentesque ex enim, feugiat vitae libero ut, venenatis ornare dolor."""
-
-def test_superstring():
-  splits = []
-  string = SuperString(text)
-  for i in range(1, len(string)):
-    for j in range(0, len(string), i):
-      splits.append(string[j:j + i])
-  print(len(splits))
-  return splits
-
-def test_string():
-  splits = []
-  string = text
-  for i in range(1, len(string)):
-    for j in range(0, len(string), i):
-      splits.append(string[j:j + i])
-  print(len(splits))
-  return splits
-
-var = test_superstring()
-input('Enter your input:')
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna leo, lacinia non convallis vitae, finibus a arcu. Nam sit amet orci dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce vitae dolor id ex imperdiet tempor. Maecenas non facilisis arcu, vehicula ullamcorper nisi. Maecenas sollicitudin a dui ac pellentesque. Proin urna risus, vestibulum eget elit quis, elementum volutpat justo. Cras non velit consectetur, pretium libero sit amet, interdum tellus. Suspendisse potenti. Fusce volutpat lacus nec dolor tempor finibus. Quisque viverra pulvinar congue. Pellentesque ex enim, feugiat vitae libero ut, venenatis ornare dolor.
