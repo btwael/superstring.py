@@ -45,7 +45,7 @@ class SuperStringBase(object):
         for start_index in range(self.length()):
             if self.character_at(start_index) != ' ':
                 break
-        for end_index in range(self.length() - 1, 0, -1):
+        for end_index in range(self.length() - 1, start_index, -1):
             if self.character_at(end_index) != ' ':
                 break
         return self.substring(start_index, end_index + 1)
