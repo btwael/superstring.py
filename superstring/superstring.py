@@ -42,14 +42,13 @@ class SuperStringBase(object):
         return SuperStringSubstring(self, start_index, end_index)
 
     def strip(self):
-        i = 0
-        while self.character_at(i) == ' ':
-            i = i + 1
-        start_index = i
-        i = self.length() - 1
-        while self.character_at(i) == ' ':
-            i = i - 1
-        return self.substring(start_index, i + 1)
+        for start_index in range(self.length()):
+            if self.character_at(start_index) != ' ':
+                break
+        for end_index in range(self.length() - 1, 0, -1):
+            if self.character_at(end_index) != ' ':
+                break
+        return self.substring(start_index, end_index + 1)
 
     def to_printable(self, start_index=None, end_index=None):
         pass
