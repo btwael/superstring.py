@@ -6,8 +6,8 @@ from superstring.superstring import SuperString
 with open('big_string.txt') as file:
     text = file.read()
 
-super_string_fp = open('super_string_memory.log', 'w+')
-string_fp = open('string_memory.log', 'w+')
+super_string_fp = open('super_string_memory.log', 'w')
+string_fp = open('string_memory.log', 'w')
 
 
 @profile(stream=super_string_fp)
