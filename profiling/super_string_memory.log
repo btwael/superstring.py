@@ -1,0 +1,15 @@
+Filename: /home/daniel/PycharmProjects/superstring.py/profiling/bench.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    13     14.6 MiB     14.6 MiB   @profile(stream=super_string_fp)
+    14                             def test_superstring():
+    15     14.6 MiB      0.0 MiB       splits = []
+    16     14.6 MiB      0.0 MiB       string = SuperString(text)
+    17    267.2 MiB      0.0 MiB       for i in range(1, len(string)):
+    18    267.2 MiB      0.3 MiB           for j in range(0, len(string), i):
+    19    267.2 MiB      0.3 MiB               splits.append(string[j:j + i])
+    20    267.2 MiB      0.0 MiB       print(len(splits))
+    21    267.2 MiB      0.0 MiB       return splits
+
+
