@@ -21,15 +21,13 @@ class SuperStringBase(object):
     def split(self, separator=" "):
         result = []
         previous = 0
-        i = 0
-        while i < self.length():
+        for i in range(self.length()):
             for j in range(len(separator)):
                 if self.character_at(i + j) != separator[j]:
                     break
             else:
                 result.append(self.substring(previous, i))
                 previous = i + len(separator)
-            i = i + 1
         result.append(self.substring(previous))
         return result
 
@@ -44,14 +42,13 @@ class SuperStringBase(object):
         return SuperStringSubstring(self, start_index, end_index)
 
     def strip(self):
-        i = 0
-        while self.character_at(i) == ' ':
-            i = i + 1
-        start_index = i
-        i = self.length() - 1
-        while self.character_at(i) == ' ':
-            i = i - 1
-        return self.substring(start_index, i + 1)
+        for start_index in range(self.length()):
+            if self.character_at(start_index) != ' ':
+                break
+        for end_index in range(self.length() - 1, start_index, -1):
+            if self.character_at(end_index) != ' ':
+                break
+        return self.substring(start_index, end_index + 1)
 
     def to_printable(self, start_index=None, end_index=None):
         pass
