@@ -1,4 +1,3 @@
-import timeit
 from memory_profiler import profile
 
 from superstring.superstring import SuperString
