@@ -11,5 +11,3 @@ Line #    Mem usage    Increment   Line Contents
     30   7838.9 MiB      8.5 MiB               splits.append(string[j:j + i])
     31   7838.9 MiB      0.0 MiB       print(len(splits))
     32   7838.9 MiB      0.0 MiB       return splits
-
-
