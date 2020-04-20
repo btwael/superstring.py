@@ -66,8 +66,8 @@ class SuperStringBase(object):
 
     def __getitem__(self, key):
         if isinstance(key, slice):
-            start = key.start if key.start > 0 else self.length() + key.start
-            stop = key.stop if key.stop > 0 else self.length() + key.stop
+            start = key.start if key.start >= 0 else self.length() + key.start
+            stop = key.stop if key.stop >= 0 else self.length() + key.stop
             return self.substring(start, end_index=stop)
         return self.character_at(key)
 

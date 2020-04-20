@@ -25,3 +25,7 @@ def test_split(super_string):
 
 def test_strip():
     assert SuperString("   TESTING     ").strip()._content == "TESTING"
+
+def test_substring_of_substring():
+    string = SuperString("SuperString is text-manipulation library for Pyhton written in Python by some programmers")
+    assert string[0:69][0:51].to_printable() == "SuperString is text-manipulation library for Pyhton"
