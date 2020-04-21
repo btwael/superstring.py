@@ -146,6 +146,12 @@ class SuperStringLower(SuperStringBase):
     def __init__(self, base):
         self._base = base
 
+    def lower(self):
+        return self
+
+    def upper(self):
+        return self._base.upper()
+
     def length(self):
         return self._base.length()
 
@@ -159,6 +165,12 @@ class SuperStringLower(SuperStringBase):
 class SuperStringUpper(SuperStringBase):
     def __init__(self, base):
         self._base = base
+
+    def lower(self):
+        return self._base.lower()
+
+    def upper(self):
+        return self
 
     def length(self):
         return self._base.length()
