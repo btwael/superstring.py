@@ -40,8 +40,6 @@ class SuperStringBase(object):
             return self
         if end_index - start_index < SUPERSTRING_MINIMAL_LENGTH:
             return SuperString(self.to_printable(start_index, end_index=end_index))
-        if issubclass(type(self), SuperStringSubstring):
-            return SuperStringSubstring(self._base, self._start_index + start_index, self._start_index + end_index)
         return SuperStringSubstring(self, start_index, end_index)
 
     def strip(self):
@@ -130,6 +128,11 @@ class SuperStringSubstring(SuperStringBase):
 
     def character_at(self, index):
         return self._base.character_at(self._start_index + index)
+
+    def substring(self, start_index, end_index=None):
+        start_index = start_index if start_index is not None else 0
+        end_index = end_index if end_index is not None else self.length()
+        return self._base[self._start_index + start_index:self._start_index + end_index]
 
     def to_printable(self, start_index=None, end_index=None):
         start_index = start_index if start_index is not None else 0
